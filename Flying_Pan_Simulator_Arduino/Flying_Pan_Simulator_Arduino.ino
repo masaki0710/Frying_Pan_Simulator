@@ -4,6 +4,7 @@ const int X_PIN = 26;
 const int Y_PIN = 27;
 const int Z_PIN = 28;
 const int SERVO_PIN = 15;
+const int BUTTON_PIN = 17;
 
 Servo myServo;
 
@@ -23,6 +24,7 @@ void setup() {
   Serial.begin(115200);
   analogReadResolution(12);
 
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
   myServo.attach(SERVO_PIN);
   myServo.attach(SERVO_PIN, 500, 2400);
   myServo.write(0);
@@ -32,7 +34,9 @@ void loop() {
   Coordinate c = getCoordinate();
   Angle a = angleCalculation(c);
 
-  String message = String(a.ax) + "," + String(a.ay) + "," + String(a.az) + "," + String(a.power);
+  int buttonState = digitalRead(BUTTON_PIN) == LOW ? 1 : 0;
+
+  String message = String(a.ax) + "," + String(a.ay) + "," + String(a.az) + "," + String(a.power) + "," + String(buttonState);
   Serial.println(message);
 
   // 受信

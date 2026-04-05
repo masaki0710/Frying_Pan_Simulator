@@ -29,6 +29,11 @@ public class EggCooking : MonoBehaviour
         skinnedMesh.SetBlendShapeWeight(0, 0f);
         eggWhite.color = rawColor;
 
+        if (serialHandler == null)
+        {
+            serialHandler = GameObject.FindAnyObjectByType<SerialHandler>();
+        }
+
         audioSource = GetComponent<AudioSource>();
     }
 
