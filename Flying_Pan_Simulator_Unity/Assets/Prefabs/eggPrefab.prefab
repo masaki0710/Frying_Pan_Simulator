@@ -284,6 +284,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EggCooking
   serialHandler: {fileID: 0}
+  fanfareSound: {fileID: 0}
+  normalSound: {fileID: 0}
+  badSound: {fileID: 0}
   cookSpeed: 0.2
-  rawColor: {r: 1, g: 1, b: 1, a: 0}
-  cookedColor: {r: 1, g: 1, b: 1, a: 1}
+  backCookProgress: 0
+  frontCookProgress: 0
+  totalCookProgress: 0
+  rawWhiteColor: {r: 1, g: 1, b: 1, a: 0}
+  cookedWhiteColor: {r: 1, g: 1, b: 1, a: 1}
+  rawYolkColor: {r: 1, g: 0.9, b: 0.5, a: 0}
+  cookedYolkColor: {r: 1, g: 0.9, b: 0.5, a: 1}
+  fork: {fileID: 2924274227674256837, guid: f731725df9c219b4dbfabd947f013789, type: 3}
+  resultCanvas: {fileID: 0}
+  resultImage: {fileID: 0}
+  spritePerfect: {fileID: 0}
+  spriteGood: {fileID: 0}
+  spriteBad: {fileID: 0}
+  spriteRaw: {fileID: 0}
+  forkSpawnPoint: {fileID: 0}
+  forkAwayPoint: {fileID: 0}
