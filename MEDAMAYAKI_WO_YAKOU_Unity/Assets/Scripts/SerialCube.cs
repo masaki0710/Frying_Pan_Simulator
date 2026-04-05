@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class SerialCube : MonoBehaviour
 {
     public SerialHandler serialHandler;
-    public Text text;
     public GameObject cube;
 
     public float smoothness = 0.1f;
@@ -39,10 +38,6 @@ public class SerialCube : MonoBehaviour
 
             targetRotation = Quaternion.Euler(pitch, 0, roll);
 
-            if (text != null)
-            {
-                text.text = $"Pitch(X): {pitch:F1}\nRoll(Y): {roll:F1}";
-            }
         }
         catch (System.Exception e)
         {
