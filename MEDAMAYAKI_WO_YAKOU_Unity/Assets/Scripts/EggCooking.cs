@@ -25,12 +25,7 @@ public class EggCooking : MonoBehaviour
 
     // シリアル通信で最後に送信した焼き加減の整数値
     private int lastSentProgress = -1;
-
-    // ボタンの状態を追跡するための変数
     private int lastButtonState = 0;
-
-    // 結果発表が完了したかどうかを追跡するフラグ
-    private bool isResultFinished = false;
 
     // 白身の色の設定
     public Color rawWhiteColor = new Color(1f, 1f, 1f, 0f);
@@ -74,18 +69,19 @@ public class EggCooking : MonoBehaviour
 
     void HandleButtonInput(string message)
     {
-        if (isResultFinished) return;
+        if (isEndingSequence) return;
 
         try
         {
             string[] receiveData = message.Split(',');
 
-            if (receiveData.Length >= 5)
+            if (receiveData.Length >= 3)
             {
-                int currentButtonState = int.Parse(receiveData[4]);
+                int currentButtonState = int.Parse(receiveData[2]);
 
                 if (currentButtonState == 1 && lastButtonState == 0 && totalCookProgress > 0.05f)
                     ShowResult();
+
                 lastButtonState = currentButtonState;
             }
         }
@@ -97,7 +93,7 @@ public class EggCooking : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("FryingPan") && !isResultFinished)
+        if (collision.gameObject.CompareTag("FryingPan") && !isEndingSequence)
             Cook();
     }
 
@@ -159,9 +155,7 @@ public class EggCooking : MonoBehaviour
         if (isEndingSequence) return;
         isEndingSequence = true;
 
-        isResultFinished = true;
         audioSource.Stop();
-
         StartCoroutine(ForkEndingSequence());
     }
 
@@ -220,17 +214,17 @@ public class EggCooking : MonoBehaviour
         // どちらかが焦げすぎ（1.1以上）
         else if (backCookProgress > 1.1f || frontCookProgress > 1.1f)
         {
-            resultImage.sprite = spriteBad; // 焦げ画像
+            resultImage.sprite = spriteBad;
         }
         // どちらかが生（0.4未満）
         else if (backCookProgress < 0.4f || frontCookProgress < 0.4f)
         {
-            resultImage.sprite = spriteRaw; // 生画像
+            resultImage.sprite = spriteRaw;
         }
         // 焦げてないし生でもないけど、両面完璧ではない場合
         else
         {
-            resultImage.sprite = spriteGood; // 普通画像
+            resultImage.sprite = spriteGood;
         }
 
         resultImage.SetNativeSize();

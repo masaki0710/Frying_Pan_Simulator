@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SerialCube : MonoBehaviour
 {
@@ -31,13 +30,13 @@ public class SerialCube : MonoBehaviour
         try
         {
             string[] data = message.Split(',');
-            if (data.Length < 5) return;
+            // 送信データが [ax, ay, button] の3つになったため、3未満でリターン
+            if (data.Length < 3) return;
 
             float pitch = float.Parse(data[0]);
             float roll = float.Parse(data[1]);
 
             targetRotation = Quaternion.Euler(pitch, 0, roll);
-
         }
         catch (System.Exception e)
         {

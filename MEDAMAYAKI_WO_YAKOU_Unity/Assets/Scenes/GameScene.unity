@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SerialCube
   serialHandler: {fileID: 240761699}
-  text: {fileID: 0}
   cube: {fileID: 2042217993}
   smoothness: 0.1
 --- !u!4 &61802296
@@ -1447,6 +1446,10 @@ PrefabInstance:
       propertyPath: forkSpawnPoint
       value: 
       objectReference: {fileID: 188519577}
+    - target: {fileID: 4811074667442251417, guid: 0cd42d8f32de42b48a58dac20ae68544, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
